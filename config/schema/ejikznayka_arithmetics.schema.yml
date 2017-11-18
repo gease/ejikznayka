@@ -1,0 +1,18 @@
+# Just a comment.
+
+ejikznayka.arithmetics:
+  type: config_object
+  label: 'Settings for mental arithmetics'
+  mapping:
+    digits:
+      type: integer
+      label: 'Digits'
+    count:
+      type: integer
+      label: 'Number of numbers'
+    interval:
+      type: float
+      label: 'Interval (seconds)'
+    minus:
+      type: boolean
+      label: 'Subtraction allowed'

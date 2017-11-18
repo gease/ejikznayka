@@ -1,0 +1,10 @@
+ejikznayka_arithmetics:
+  version: 1.x
+  js:
+    js/ejikznayka_arithmetics.js: {}
+  css:
+    component:
+      css/ejikznayka_arithmetics.css: {}
+
+  dependencies:
+    - core/drupalSettings

@@ -1,0 +1,15 @@
+ejikznayka_arithmetics.content:
+  path: '/schet'
+  defaults:
+    _controller: '\Drupal\ejikznayka_arithmetics\Controller\EjikznaykaArithmeticsController::content'
+    _title: 'Mental Arithmetics'
+  requirements:
+    _permission: 'access content'
+
+ejikznayka_arithmetics.settings:
+  path: '/admin/ejikznayka/arithmetics'
+  defaults:
+    _form: '\Drupal\ejikznayka_arithmetics\Form\EjikznaykaArithmeticsSettingsForm'
+    _title: 'Ejik Znayka settings'
+  requirements:
+    _permission: 'administer ejikznayka'

@@ -1,0 +1,6 @@
+name: Ejik Znayka Arithmetics
+description: Mental arithmetics exercises.
+package: Ejik Znayka
+
+type: module
+core: 8.x

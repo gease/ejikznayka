@@ -1,0 +1,23 @@
+#check, #check_answer_message {
+  display: none;
+}
+input[type='number'] {
+  width: 3em;
+}
+.incorrect {
+  color: red;
+}
+.correct {
+  color: lightgreen;
+}
+#show {
+  color: black;
+  font-size: 40px;
+  transition: color  0.5s, opacity 0.1s;
+}
+#show.new {
+  color: red;
+}
+#show.old {
+  opacity: 0;
+}
