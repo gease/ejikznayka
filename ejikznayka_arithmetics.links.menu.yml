@@ -1,0 +1,12 @@
+ejikznayka_arithmetics.admin:
+  title: 'Ejik Znayka Settings'
+  description: 'Settings for mental arithmetics trainer.'
+  parent: system.admin
+  route_name: ejikznayka_arithmetics.settings
+  weight: 30
+
+ejikznayka_arithmetics.content:
+  title: 'Mental Arithmetics'
+  description: 'Mental arithmetics trainer.'
+  route_name: ejikznayka_arithmetics.content
+  menu_name: main
