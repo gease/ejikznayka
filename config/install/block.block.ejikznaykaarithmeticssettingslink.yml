@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ejikznayka_arithmetics
+    - system
+    - user
+  theme:
+    - bartik
+id: ejikznaykaarithmeticssettingslink
+theme: bartik
+region: content
+weight: 0
+provider: null
+plugin: ejikznayka_arithmetics_settings_link
+settings:
+  id: ejikznayka_arithmetics_settings_link
+  label: 'Ejikznayka Arithmetics Settings Link'
+  provider: ejikznayka_arithmetics
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /schet
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      teacher: teacher
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
