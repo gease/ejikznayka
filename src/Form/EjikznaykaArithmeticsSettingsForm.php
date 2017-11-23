@@ -10,6 +10,7 @@ namespace Drupal\ejikznayka_arithmetics\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
 
 class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
 
@@ -34,6 +35,9 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('ejikznayka.arithmetics');
+
+    $form['link'] = Link::createFromRoute($this->t('Go to arithmetics page'), 'ejikznayka_arithmetics.content')->toRenderable();
+
     $form['digits'] = array(
       '#type' => 'number',
       '#title' => $this->t('Digits'),
