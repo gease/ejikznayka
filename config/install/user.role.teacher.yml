@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: teacher
+label: Teacher
+weight: 3
+is_admin: null
+permissions:
+  - 'administer ejikznayka'
