@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Default theme implementation for mental arithmetics page.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{{ attach_library('ejikznayka_arithmetics/ejikznayka_arithmetics') }}
+<input type="button" name="start" id="start" value="{{ 'Start'|t }}" />
+<div id="show"></div>
+<div id="check">
+    <input type="button" name="show_answer" id="show_answer" value="{{ 'Show answer' | t }}" /><br>
+    <div id="answer">
+        {{ "Correct answer" | t }}: <div id="answer_placeholder"> </div>
+    </div>
+    <input type="text" name="input_answer" id="input_answer" placeholder="{{ 'Your answer' | t }}" />
+    <input type="button" name="check_answer" id="check_answer" value="{{ 'Check the answer' | t }}" />
+    <div id="check_answer_message">
+        <div class="incorrect">{{ "Incorrect!" | t }}</div>
+        <div class="correct">{{ "Correct!" | t }}</div>
+    </div>
+</div>
