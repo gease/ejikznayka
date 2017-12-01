@@ -129,7 +129,7 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
         'file_validate_extensions' => array('png', 'gif', 'jpg', 'jpeg'),
         'file_validate_is image' => array(),
         'file_validate_image_resolution' => array('257x257', '16x16'),
-        'file_validate_size' => array(10000),
+        'file_validate_size' => array(102400),
       ),
       '#default_value' => $config->get('incorrect_emoticon'),
     );
