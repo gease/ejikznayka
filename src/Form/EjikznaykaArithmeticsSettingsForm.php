@@ -57,7 +57,7 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
       ),
       'max' => array(
         '#type' => 'number',
-        '#title' => $this->t('To'),
+        '#title' => $this->t('To', array(), array('context' => 'Range')),
         '#min' => 0,
         '#max' => 999999,
         '#default_value' => $config->get('range.max'),
