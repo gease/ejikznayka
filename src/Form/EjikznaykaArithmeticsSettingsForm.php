@@ -164,11 +164,15 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
     // Check the icons and remove old files if changed. We assume no one else is using them.
     foreach (['correct_emoticon', 'incorrect_emoticon'] as $icon) {
       if ($config->get($icon) != $form_state->getValue($icon)) {
-        $file = File::load($config->get($icon)[0]);
+        if (isset($config->get($icon)[0])) {
+          $file = File::load($config->get($icon)[0]);
+        }
         if (!empty($file)) {
           $file->delete();
         }
-        $file = File::load($form_state->getValue($icon)[0]);
+        if (isset($form_state->getValue($icon)[0])) {
+          $file = File::load($form_state->getValue($icon)[0]);
+        }
         if (!empty($file)) {
           $file->setPermanent();
           $file_usage = \Drupal::service('file.usage');
