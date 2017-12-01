@@ -165,16 +165,20 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
     foreach (['correct_emoticon', 'incorrect_emoticon'] as $icon) {
       if ($config->get($icon) != $form_state->getValue($icon)) {
         $file = File::load($config->get($icon)[0]);
-        $file->delete();
-        $file = File::load($form_state->getValue($icon)[0]);
-        $file->setPermanent();
-        $file_usage = \Drupal::service('file.usage');
-        $usage = $file_usage->listUsage($file);
-        if (empty($usage)) {
-          // We don't have entity to link this file to. Let's use user #1.
-          $file_usage->add($file, 'ejikznayka_arithmetics', 'user', 1);
+        if (!empty($file)) {
+          $file->delete();
         }
-        $file->save();
+        $file = File::load($form_state->getValue($icon)[0]);
+        if (!empty($file)) {
+          $file->setPermanent();
+          $file_usage = \Drupal::service('file.usage');
+          $usage = $file_usage->listUsage($file);
+          if (empty($usage)) {
+            // We don't have entity to link this file to. Let's use user #1.
+            $file_usage->add($file, 'ejikznayka_arithmetics', 'user', 1);
+          }
+          $file->save();
+        }
       }
     }
     // Set the submitted configuration setting.
