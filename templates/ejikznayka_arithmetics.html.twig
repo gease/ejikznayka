@@ -8,17 +8,46 @@
 #}
 
 {{ attach_library('ejikznayka_arithmetics/ejikznayka_arithmetics') }}
-<input type="button" name="start" id="start" value="{{ 'Start'|t }}" />
-<div id="show"></div>
-<div id="check">
-    <input type="button" name="show_answer" id="show_answer" value="{{ 'Show answer' | t }}" /><br>
-    <div id="answer">
-        {{ "Correct answer" | t }}: <div id="answer_placeholder"> </div>
+<a id="ejikznayka_page">{{ 'Go to the excercise page'|t }}</a>
+<div class="overlay">
+  <div id="ejikznayka_close"></div>
+  <div id="ejikznayka_controls">
+    <input type="button" name="start" id="start" value="{{ 'Start'|t }}"/>
+    <input type="text" name="input_answer" id="input_answer" placeholder="{{ 'Your answer'|t }}"/>
+    <input type="button" name="show_answer" id="show_answer" value="{{ 'Show answer'|t }}"/>
+    <input type="button" name="check_answer" id="check_answer" value="{{ 'Check the answer'|t }}"/>
+  </div>
+  <div id="ejikznayka_display">
+    <div id="mark">
+      {{ "Mark for the response"|t }}
+      <span id="mark_placeholder"></span>
     </div>
-    <input type="text" name="input_answer" id="input_answer" placeholder="{{ 'Your answer' | t }}" />
-    <input type="button" name="check_answer" id="check_answer" value="{{ 'Check the answer' | t }}" />
+    <div id="show"></div>
+    <div id="your_answer">
+      {{ "Your answer"|t }}:
+      <div id="your_answer_placeholder"></div>
+    </div>
+    <div id="correct_answer">
+      {{ "Correct answer"|t }}:
+      <div id="correct_answer_placeholder"></div>
+    </div>
     <div id="check_answer_message">
-        <div class="incorrect">{{ "Incorrect!" | t }}</div>
-        <div class="correct">{{ "Correct!" | t }}</div>
+      <div class="incorrect">
+        {% if incorrect_emoticon %}
+          <img src="{{ incorrect_emoticon }}"/>
+        {% else %}
+          {{ "Incorrect!"|t }}
+        {% endif %}
+      </div>
+      <div class="correct">
+        {% if correct_emoticon %}
+          <img src="{{ correct_emoticon }}"/>
+        {% else %}
+          {{ "Correct!"|t }}
+        {% endif %}
+      </div>
     </div>
+  </div>
+  <div id="ejikznayka_empty"></div>
+
 </div>

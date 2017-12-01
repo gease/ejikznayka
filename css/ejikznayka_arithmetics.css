@@ -1,3 +1,49 @@
+.overlay {
+  opacity: 1;
+  background-color: white;
+  z-index: 999;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  /*justify-content: flex-start;*/
+  align-items: center;
+  top: 0;
+  left: 0;
+  display: none;
+}
+#ejikznayka_close {
+  position: absolute;
+  cursor: pointer;
+  top: 5%;
+  right: 5%;
+  width: 16px;
+  height: 16px;
+  background-image: url('../../../../core/misc/icons/000000/ex.svg');
+}
+#ejikznayka_controls {
+  flex-basis: 300px;
+}
+
+#ejikznayka_controls input {
+  display: block;
+  margin: 1em;
+}
+
+#ejikznayka_empty {
+  flex-basis: 300px;
+}
+#ejikznayka_display {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+#ejikznayka_display > div {
+  display: none;
+}
 #check, #check_answer_message {
   display: none;
 }
@@ -20,4 +66,15 @@ input[type='number'] {
 }
 #show.old {
   opacity: 0;
+}
+#your_answer_placeholder, #correct_answer_placeholder {
+  text-align: center;
+  font-size: 40px;
+}
+#correct_answer {
+  color: green;
+}
+#mark {
+  position: absolute;
+  top: 5%;
 }

@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Install file for module ejkznayka_arithmetics.
+ */
+
+use Drupal\file\Entity\File;
+
+/**
+ * Implements hook_uninstall().
+ */
+function ejikznayka_arithmetics_uninstall() {
+  $config = \Drupal::configFactory()->getEditable('ejikznayka.arithmetics');
+  foreach (['correct_emoticon', 'incorrect_emoticon'] as $icon) {
+    $file = File::load($config->get($icon)[0]);
+    if (!empty($file)) {
+      $file->delete();
+    }
+  }
+  $config->delete();
+}

@@ -7,12 +7,31 @@ ejikznayka.arithmetics:
     digits:
       type: integer
       label: 'Digits'
+    range:
+      min:
+        type: integer
+        label: 'From'
+      max:
+        type: integer
+        label: 'To'
     count:
       type: integer
       label: 'Number of numbers'
     interval:
       type: float
       label: 'Interval (seconds)'
+    random_location:
+      type: boolean
+      label: 'Random location'
     minus:
       type: boolean
       label: 'Subtraction allowed'
+    mark:
+      type: integer
+      label: 'Mark for correct task'
+    correct_emoticon:
+      type: binary
+      label: 'Smiley for correct answer'
+    incorrect_emoticon:
+      type: binary
+      label: 'Smiley for incorrect answer'

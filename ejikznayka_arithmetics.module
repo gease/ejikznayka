@@ -7,7 +7,10 @@ function ejikznayka_arithmetics_theme($existing, $type, $theme, $path) {
   return [
     'ejikznayka_arithmetics' => [
       'template' => 'ejikznayka_arithmetics',
-      'variables' => [],
+      'variables' => [
+        'correct_emoticon' => NULL,
+        'incorrect_emoticon' => NULL,
+      ],
     ],
   ];
 }
