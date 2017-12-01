@@ -10,7 +10,7 @@ class EjikznaykaArithmeticsController extends ControllerBase {
   public function content() {
     $config = \Drupal::config('ejikznayka.arithmetics')->get();
     foreach (['correct_emoticon', 'incorrect_emoticon'] as $icon) {
-      $file = File::load($config['correct_emoticon'][0]);
+      $file = File::load($config[$icon][0]);
       ${$icon . '_url'} = isset($file) ? $file->url() : '';
     }
     $js_config = [
