@@ -106,9 +106,8 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     );
 
-    $form['correct_emoticon'] = array(
+    $icon_array = array(
       '#type' => 'managed_file',
-      '#title' => $this->t('Smiley for correct answer'),
       '#multiple' => FALSE,
       '#upload_location' => 'public://ejikznayka',
       '#upload_validators' => array(
@@ -117,23 +116,18 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
         'file_validate_image_resolution' => array('257x257', '16x16'),
         'file_validate_size' => array(102400),
       ),
-      '#default_value' => $config->get('correct_emoticon'),
     );
+
+    $form['correct_emoticon'] = array(
+      '#title' => $this->t('Smiley for correct answer'),
+      '#default_value' => $config->get('correct_emoticon'),
+    ) + $icon_array;
 
     $form['incorrect_emoticon'] = array(
-      '#type' => 'managed_file',
       '#title' => $this->t('Smiley for incorrect answer'),
-      '#multiple' => FALSE,
-      '#upload_location' => 'public://ejikznayka',
-      '#upload_validators' => array(
-        'file_validate_extensions' => array('png', 'gif', 'jpg', 'jpeg'),
-        'file_validate_is image' => array(),
-        'file_validate_image_resolution' => array('257x257', '16x16'),
-        'file_validate_size' => array(102400),
-      ),
       '#default_value' => $config->get('incorrect_emoticon'),
-    );
-
+    ) + $icon_array;
+    
     $form['#attached'] = array(
       'library' => array('ejikznayka_arithmetics/ejikznayka_arithmetics_settings'),
     );
