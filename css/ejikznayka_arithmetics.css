@@ -28,6 +28,7 @@
 #ejikznayka_controls input {
   display: block;
   margin: 1em;
+  visibility: inherit;
 }
 
 #ejikznayka_empty {
@@ -60,6 +61,7 @@ input[type='number'] {
   color: black;
   font-size: 40px;
   transition: color  0.5s, opacity 0.1s;
+  text-align: right;
 }
 #show.new {
   color: red;

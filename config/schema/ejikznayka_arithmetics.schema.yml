@@ -20,6 +20,12 @@ ejikznayka.arithmetics:
     interval:
       type: float
       label: 'Interval (seconds)'
+    column:
+      type: string
+      label: 'Show numbers by one or in column?'
+    font_size:
+      type: integer
+      label: 'Font size'
     random_location:
       type: boolean
       label: 'Random location'

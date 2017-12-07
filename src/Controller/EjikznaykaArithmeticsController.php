@@ -19,6 +19,8 @@ class EjikznaykaArithmeticsController extends ControllerBase {
       'minus' => $config['minus'],
       'random_location' => $config['random_location'],
       'mark' => $config['mark'],
+      'column' => $config['column'],
+      'font_size' => $config['font_size'],
     ];
     if (!empty($config['digits'])) {
       $js_config['digits'] = $config['digits'];

@@ -4,3 +4,5 @@ interval: 2.0
 minus: true
 random_location: false
 mark: 5
+column: 'single'
+font_size: 40

@@ -85,9 +85,31 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     );
 
+    $form['font_size'] = array(
+      '#type' => 'number',
+      '#title' => $this->t('Font size'),
+      '#step' => 4,
+      '#min' => 20,
+      '#max' => 60,
+      '#default_value' => $config->get('font_size'),
+      '#required' => TRUE,
+    );
+
+    $form['column'] = array(
+      '#type' => 'radios',
+      '#title' => $this->t('Show numbers by one or in column?'),
+      '#options' => array(
+        'single' => $this->t('By one'),
+        'column' => $this->t('In column'),
+      ),
+      '#default_value' => $config->get('column'),
+      '#required' => TRUE,
+    );
+
     $form['random_location'] = array(
       '#type' => 'checkbox',
       '#title' => $this->t('Random location'),
+      '#description' => $this->t("Doesn't have any effect if numbers are displayed in column"),
       '#default_value' => $config->get('random_location'),
     );
 
@@ -127,7 +149,7 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
       '#title' => $this->t('Smiley for incorrect answer'),
       '#default_value' => $config->get('incorrect_emoticon'),
     ) + $icon_array;
-    
+
     $form['#attached'] = array(
       'library' => array('ejikznayka_arithmetics/ejikznayka_arithmetics_settings'),
     );
@@ -189,6 +211,8 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
       ->set('mark', $form_state->getValue('mark'))
       ->set('digits', $form_state->getValue('digits'))
       ->set('range', $form_state->getValue('range'))
+      ->set('column', $form_state->getValue('column'))
+      ->set('font_size', $form_state->getValue('font_size'))
       ->save();
     parent::submitForm($form, $form_state);
   }
