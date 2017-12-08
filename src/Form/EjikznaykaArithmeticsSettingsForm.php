@@ -150,6 +150,27 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('incorrect_emoticon'),
     ) + $icon_array;
 
+    $audio_array = array(
+      '#type' => 'managed_file',
+      '#multiple' => FALSE,
+      '#upload_location' => 'public://ejikznayka',
+      '#description' => $this->t('Audio file in mp3 format.'),
+      '#upload_validators' => array(
+        'file_validate_extensions' => array('mp3'),
+        'file_validate_size' => array(102400),
+      ),
+    );
+
+    $form['correct_audio'] = array(
+      '#title' => $this->t('Audio for correct answer'),
+      '#default_value' => $config->get('correct_audio'),
+    ) + $audio_array;
+
+    $form['incorrect_audio'] = array(
+      '#title' => $this->t('Audio for incorrect answer'),
+      '#default_value' => $config->get('incorrect_audio'),
+    ) + $audio_array;
+
     $form['#attached'] = array(
       'library' => array('ejikznayka_arithmetics/ejikznayka_arithmetics_settings'),
     );
@@ -178,16 +199,16 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
     // Retrieve the configuration.
     $config = \Drupal::configFactory()->getEditable('ejikznayka.arithmetics');
     // Check the icons and remove old files if changed. We assume no one else is using them.
-    foreach (['correct_emoticon', 'incorrect_emoticon'] as $icon) {
-      if ($config->get($icon) != $form_state->getValue($icon)) {
-        if (isset($config->get($icon)[0])) {
-          $file = File::load($config->get($icon)[0]);
+    foreach (['correct_emoticon', 'incorrect_emoticon', 'correct_audio', 'incorrect_audio'] as $file_key) {
+      if ($config->get($file_key) != $form_state->getValue($file_key)) {
+        if (isset($config->get($file_key)[0])) {
+          $file = File::load($config->get($file_key)[0]);
         }
         if (!empty($file)) {
           $file->delete();
         }
-        if (isset($form_state->getValue($icon)[0])) {
-          $file = File::load($form_state->getValue($icon)[0]);
+        if (isset($form_state->getValue($file_key)[0])) {
+          $file = File::load($form_state->getValue($file_key)[0]);
         }
         if (!empty($file)) {
           $file->setPermanent();
@@ -208,6 +229,8 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
       ->set('random_location', $form_state->getValue('random_location'))
       ->set('correct_emoticon', $form_state->getValue('correct_emoticon'))
       ->set('incorrect_emoticon', $form_state->getValue('incorrect_emoticon'))
+      ->set('correct_audio', $form_state->getValue('correct_audio'))
+      ->set('incorrect_audio', $form_state->getValue('incorrect_audio'))
       ->set('mark', $form_state->getValue('mark'))
       ->set('digits', $form_state->getValue('digits'))
       ->set('range', $form_state->getValue('range'))

@@ -3,6 +3,11 @@
  * @file
  * Default theme implementation for mental arithmetics page.
  *
+ * Available variables:
+ * - incorrect_emoticon: url for image file supplied by the administrator for displaying with incorrect answer.
+ * - correct_emoticon: url for image file supplied by the user for displaying with incorrect answer.
+ * - incorrect_audio: url for audio file supplied by the administrator for playing with incorrect answer.
+ * - correct_audio: url for audio file supplied by the administrator for playing with incorrect answer.
  * @ingroup themeable
  */
 #}
@@ -38,12 +43,18 @@
         {% else %}
           {{ "Incorrect!"|t }}
         {% endif %}
+        {%  if incorrect_audio is defined %}
+          <audio src="{{ incorrect_audio }}"></audio>
+        {%  endif %}
       </div>
       <div class="correct">
         {% if correct_emoticon %}
           <img src="{{ correct_emoticon }}"/>
         {% else %}
           {{ "Correct!"|t }}
+        {% endif %}
+        {% if correct_audio is defined %}
+          <audio src="{{ correct_audio }}"></audio>
         {% endif %}
       </div>
     </div>

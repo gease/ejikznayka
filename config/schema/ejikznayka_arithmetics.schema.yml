@@ -41,3 +41,9 @@ ejikznayka.arithmetics:
     incorrect_emoticon:
       type: binary
       label: 'Smiley for incorrect answer'
+    correct_audio:
+      type: binary
+      label: 'Audio for correct answer'
+    incorrect_audio:
+      type: binary
+      label: 'Audio for incorrect answer'

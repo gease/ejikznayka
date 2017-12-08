@@ -192,12 +192,18 @@ var ejikznayka = {
       check_answer_message.querySelector('.incorrect').style.display = 'none';
       check_answer_message.querySelector('.correct').style.display = 'block';
       mark_placeholder.innerHTML = ejikznayka.settings.mark;
+      if (typeof $('.correct audio').get(0) !== 'undefined') {
+        $('.correct audio').get(0).play();
+      }
     }
     else {
       $('#your_answer').removeClass('correct').addClass('incorrect');
       check_answer_message.querySelector('.correct').style.display = 'none';
       check_answer_message.querySelector('.incorrect').style.display = 'block';
       mark_placeholder.innerHTML = 0;
+      if (typeof $('.incorrect audio').get(0) !== 'undefined') {
+        $('.incorrect audio').get(0).play();
+      }
     }
   }
 

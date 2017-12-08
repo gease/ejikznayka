@@ -10,6 +10,8 @@ function ejikznayka_arithmetics_theme($existing, $type, $theme, $path) {
       'variables' => [
         'correct_emoticon' => NULL,
         'incorrect_emoticon' => NULL,
+        'correct_audio' => NULL,
+        'incorrect_audio' => NULL,
       ],
     ],
   ];

@@ -9,9 +9,11 @@ class EjikznaykaArithmeticsController extends ControllerBase {
 
   public function content() {
     $config = \Drupal::config('ejikznayka.arithmetics')->get();
-    foreach (['correct_emoticon', 'incorrect_emoticon'] as $icon) {
-      $file = File::load($config[$icon][0]);
-      ${$icon . '_url'} = isset($file) ? $file->url() : '';
+    foreach (['correct_emoticon', 'incorrect_emoticon', 'correct_audio', 'incorrect_audio'] as $file_key) {
+      if (isset($config[$file_key][0])) {
+        $file = File::load($config[$file_key][0]);
+        ${$file_key . '_url'} = isset($file) ? $file->url() : '';
+      }
     }
     $js_config = [
       'count' => $config['count'],
@@ -31,6 +33,8 @@ class EjikznaykaArithmeticsController extends ControllerBase {
     return [
       '#correct_emoticon' => $correct_emoticon_url,
       '#incorrect_emoticon' => $incorrect_emoticon_url,
+      '#correct_audio' => $correct_audio_url,
+      '#incorrect_audio' => $incorrect_audio_url,
       '#theme' => 'ejikznayka_arithmetics',
       '#attached' => [
         'drupalSettings' => [
