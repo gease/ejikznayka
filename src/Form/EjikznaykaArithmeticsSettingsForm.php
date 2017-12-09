@@ -97,10 +97,11 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
 
     $form['column'] = array(
       '#type' => 'radios',
-      '#title' => $this->t('Show numbers by one or in column?'),
+      '#title' => $this->t('How to show the numbers?'),
       '#options' => array(
         'single' => $this->t('By one'),
         'column' => $this->t('In column'),
+        'line' => $this->t('In line'),
       ),
       '#default_value' => $config->get('column'),
       '#required' => TRUE,

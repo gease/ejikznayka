@@ -114,14 +114,14 @@ var ejikznayka = {
       input_answer.value = '';
       $('#ejikznayka_display').children().hide();
       show.style.display = 'block';
-      if (ejikznayka.settings.column == 'single') {
+      //if (ejikznayka.settings.column == 'single') {
         hideControls();
         changeNumber();
-      }
-      if (ejikznayka.settings.column == 'column') {
+      //}
+      /*if (ejikznayka.settings.column == 'column') {
         showColumn();
         showResult();
-      }
+      }*/
     }, false);
 
     show_answer.addEventListener("click", function () {
@@ -146,10 +146,23 @@ var ejikznayka = {
   };
 
   function changeNumber() {
-    show.innerHTML = ejikznayka.decoratedSeq[ejikznayka.count];
+    switch(ejikznayka.settings.column) {
+      case 'single':
+        show.innerHTML = ejikznayka.decoratedSeq[ejikznayka.count];
+        break;
+      case 'column':
+        show.innerHTML += '<br>' +ejikznayka.decoratedSeq[ejikznayka.count];
+        break;
+      case 'line':
+        show.innerHTML += ejikznayka.decoratedSeq[ejikznayka.count];
+        break;
+      default:
+        break;
+    }
+    //show.innerHTML = ejikznayka.decoratedSeq[ejikznayka.count];
     show.classList.add('new');
     show.classList.remove('old');
-    if (ejikznayka.settings.random_location) {
+    if (ejikznayka.settings.random_location && ejikznayka.settings.column === 'single') {
       $('#show').css('position', 'absolute').css(ejikznayka.positions[ejikznayka.count]);
     }
 
