@@ -187,7 +187,7 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
       if (empty($form_state->getValue(['range', 'max'])) || empty($form_state->getValue(['range', 'min']))) {
         $form_state->setErrorByName('digits', $this->t('Either digits or range should be set'));
       }
-      elseif ($form_state->getValue(['range', 'min']) >= $form_state->getValue(['range', 'max'])) {
+      elseif ($form_state->getValue(['range', 'min']) > $form_state->getValue(['range', 'max'])) {
         $form_state->setErrorByName('range', $this->t('Range "from" should be less than "to"'));
       }
     }
