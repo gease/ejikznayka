@@ -29,6 +29,9 @@ ejikznayka.arithmetics:
     random_location:
       type: boolean
       label: 'Random location'
+    keep:
+      type: boolean
+      label: 'Keep or hide line or column after last number?'
     minus:
       type: boolean
       label: 'Subtraction allowed'

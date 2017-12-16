@@ -19,6 +19,7 @@ class EjikznaykaArithmeticsController extends ControllerBase {
       'count' => $config['count'],
       'interval' => $config['interval'],
       'minus' => $config['minus'],
+      'keep' => ($config['column'] == 'single' ? FALSE : $config['keep']),
       'random_location' => $config['random_location'],
       'mark' => $config['mark'],
       'column' => $config['column'],

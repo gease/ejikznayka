@@ -161,7 +161,7 @@ var ejikznayka = {
     }
     //show.innerHTML = ejikznayka.decoratedSeq[ejikznayka.count];
     show.classList.add('new');
-    show.classList.remove('old');
+    //show.classList.remove('old');
     if (ejikznayka.settings.random_location && ejikznayka.settings.column === 'single') {
       $('#show').css('position', 'absolute').css(ejikznayka.positions[ejikznayka.count]);
     }
@@ -170,7 +170,7 @@ var ejikznayka = {
       show.classList.remove('new');
     }, ejikznayka.settings.interval * 500);
     setTimeout(function () {
-      show.classList.add('old');
+      //show.classList.add('old');
     }, ejikznayka.settings.interval * 1000 - 100);
 
     if (++ejikznayka.count < ejikznayka.settings.count) {
@@ -178,7 +178,9 @@ var ejikznayka = {
     }
     else {
       setTimeout(function () {
-        show.innerHTML = '';
+        if (!ejikznayka.settings.keep) {
+          show.innerHTML = '';
+        }
         showResult();
       }, ejikznayka.settings.interval * 1000);
     }

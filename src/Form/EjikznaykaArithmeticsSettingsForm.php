@@ -107,6 +107,13 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     );
 
+    $form['keep'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Keep or hide line or column after last number?'),
+      '#description' => $this->t("Doesn't have any effect if numbers are displayed by one"),
+      '#default_value' => $config->get('keep'),
+    );
+    
     $form['random_location'] = array(
       '#type' => 'checkbox',
       '#title' => $this->t('Random location'),
@@ -227,6 +234,7 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
     $config->set('count', $form_state->getValue('count'))
       ->set('interval', $form_state->getValue('interval'))
       ->set('minus', $form_state->getValue('minus'))
+      ->set('keep', $form_state->getValue('keep'))
       ->set('random_location', $form_state->getValue('random_location'))
       ->set('correct_emoticon', $form_state->getValue('correct_emoticon'))
       ->set('incorrect_emoticon', $form_state->getValue('incorrect_emoticon'))
