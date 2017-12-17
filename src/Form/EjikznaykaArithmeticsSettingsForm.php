@@ -90,7 +90,7 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
       '#title' => $this->t('Font size'),
       '#step' => 4,
       '#min' => 20,
-      '#max' => 60,
+      '#max' => 100,
       '#default_value' => $config->get('font_size'),
       '#required' => TRUE,
     );
