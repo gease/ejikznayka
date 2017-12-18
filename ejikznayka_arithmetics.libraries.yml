@@ -9,6 +9,7 @@ ejikznayka_arithmetics:
   dependencies:
     - core/drupalSettings
     - core/jquery
+    - core/jquery.once
 
 ejikznayka_arithmetics_settings:
   version: 1.x

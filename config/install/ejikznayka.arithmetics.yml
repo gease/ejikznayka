@@ -1,4 +1,8 @@
 digits: 1
+range:
+  min: 1
+  max: 100
+sequence: false
 count: 7
 interval: 2.0
 minus: true

@@ -9,12 +9,6 @@ class EjikznaykaArithmeticsController extends ControllerBase {
 
   public function content() {
     $config = \Drupal::config('ejikznayka.arithmetics')->get();
-    foreach (['correct_emoticon', 'incorrect_emoticon', 'correct_audio', 'incorrect_audio'] as $file_key) {
-      if (isset($config[$file_key][0])) {
-        $file = File::load($config[$file_key][0]);
-        ${$file_key . '_url'} = isset($file) ? $file->url() : '';
-      }
-    }
     $js_config = [
       'count' => $config['count'],
       'interval' => $config['interval'],
@@ -30,12 +24,9 @@ class EjikznaykaArithmeticsController extends ControllerBase {
     }
     else {
       $js_config['range'] = $config['range'];
+      $js_config['sequence'] = $config['sequence'];
     }
-    return [
-      '#correct_emoticon' => $correct_emoticon_url,
-      '#incorrect_emoticon' => $incorrect_emoticon_url,
-      '#correct_audio' => $correct_audio_url,
-      '#incorrect_audio' => $incorrect_audio_url,
+    $return_array = [
       '#theme' => 'ejikznayka_arithmetics',
       '#attached' => [
         'drupalSettings' => [
@@ -45,5 +36,12 @@ class EjikznaykaArithmeticsController extends ControllerBase {
         ],
       ],
     ];
+    foreach (['correct_emoticon', 'incorrect_emoticon', 'correct_audio', 'incorrect_audio'] as $file_key) {
+      if (isset($config[$file_key][0])) {
+        $file = File::load($config[$file_key][0]);
+        $return_array['#' . $file_key] = isset($file) ? $file->url() : '';
+      }
+    }
+    return $return_array;
   }
 }

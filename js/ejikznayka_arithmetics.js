@@ -1,3 +1,7 @@
+/**
+ * @file Provides functionality of the arithmetics page.
+ */
+
 var ejikznayka = {
   res: 0,
   min: 0,
@@ -9,15 +13,15 @@ var ejikznayka = {
   decoratedSeq: [],
   positions: [],
 
-  reset: function() {
-     this.res = this.count = 0;
-     this.setup();
+  reset: function () {
+    'use strict';
+    this.res = this.count = 0;
+    this.setup();
   },
-
-  setup: function(settings = {}) {
-
+  setup: function (settings) {
+    'use strict';
     if (jQuery.isEmptyObject(settings) && jQuery.isEmptyObject(this.settings)) {
-      throw 'No settings to setup ejikznayka.'
+      throw 'No settings to setup ejikznayka.';
     }
     if (!jQuery.isEmptyObject(settings)) {
       this.settings = jQuery.extend(true, {}, settings);
@@ -38,7 +42,8 @@ var ejikznayka = {
       this.range = this.max - this.min;
     }
     // Generate sequence of numbers.
-    for (var i = 0; i < this.settings.count; i++) {
+    var i;
+    for (i = 0; i < this.settings.count; i++) {
       if (this.settings.minus == false || (Math.random() > 0.5 || this.res <= this.min)) {
         this.seq[i] = this.min + Math.floor(Math.random() * (this.range + 1));
       }
@@ -75,10 +80,14 @@ var ejikznayka = {
     }
   },
 
-  decorate: function(i, skip = false) {
+  decorate: function (i, skip) {
+    'use strict';
+    if (typeof skip === 'undefined') {
+      skip = false;
+    }
     // We assume that i may be a string.
     if (isNaN(+i)) {
-      return ''
+      return '';
     }
     else {
       if (+i < 0 || skip) {
@@ -93,84 +102,85 @@ var ejikznayka = {
 };
 
 (function ($, Drupal) {
+  'use strict';
   window.onload = function () {
     ejikznayka.setup(drupalSettings.ejikznayka.arithmetics);
 
     // Turning page on and off.
-    ejikznayka_page.addEventListener("click", function () {
+    $('#ejikznayka_page').click(function () {
       $('.overlay').css('display', 'flex');
       ejikznayka.reset();
     });
 
-    ejikznayka_close.addEventListener("click", function () {
+    $('#ejikznayka_close').click(function () {
       $('.overlay').css('display', 'none');
     });
 
     // Controls for the actions.
-    start.addEventListener("click", function () {
+    $('#start').click(function () {
       ejikznayka.reset();
-      correct_answer_placeholder.innerHTML = '';
-      //correct_answer.style.display = 'none';
-      input_answer.value = '';
+      $('#correct_answer_placeholder').html('');
+      // correct_answer.style.display = 'none';
+      $('#input_answer').val('');
       $('#ejikznayka_display').children().hide();
-      show.style.display = 'block';
-      //if (ejikznayka.settings.column == 'single') {
-        hideControls();
-        changeNumber();
-      //}
-      /*if (ejikznayka.settings.column == 'column') {
+      $('#show').css('display','block');
+      // if (ejikznayka.settings.column == 'single') {
+      hideControls();
+      changeNumber();
+      // }
+      /* if (ejikznayka.settings.column == 'column') {
         showColumn();
         showResult();
       }*/
-    }, false);
+    });
 
-    show_answer.addEventListener("click", function () {
-      correct_answer_placeholder.innerHTML = ejikznayka.res;
-      correct_answer.style.display = 'block';
+    $('#show_answer').click(function () {
+      $('#correct_answer_placeholder').html(ejikznayka.res);
+      $('#correct_answer').css('display', 'block');
       $('#ejikznayka_controls').children(':not(#start)').hide();
-      show.innerHTML = '';
+      $('#show').html('');
       checkAnswer();
-    }, false);
+    });
 
-    check_answer.addEventListener("click", function () {
-      check_answer_message.style.display = 'block';
-      correct_answer.style.display = 'none';
-      show.innerHTML = '';
+    $('#check_answer').click( function () {
+      $('#check_answer_message').css('display', 'block');
+      $('#correct_answer').css('display', 'none');
+      $('#show').html('');
       checkAnswer();
-    }, false);
+    });
 
-    input_answer.addEventListener("blur", function () {
-      your_answer_placeholder.innerHTML = this.value;
-      your_answer.style.display = 'block';
+    $('#input_answer').blur(function () {
+      $('#your_answer_placeholder').html(this.value);
+      $('#your_answer').css('display', 'block');
     });
   };
 
   function changeNumber() {
-    switch(ejikznayka.settings.column) {
+    switch (ejikznayka.settings.column) {
       case 'single':
-        show.innerHTML = ejikznayka.decoratedSeq[ejikznayka.count];
+        $('#show').html(ejikznayka.decoratedSeq[ejikznayka.count]);
         break;
       case 'column':
-        show.innerHTML += '<br>' +ejikznayka.decoratedSeq[ejikznayka.count];
+        $('#show').append('<br>' + ejikznayka.decoratedSeq[ejikznayka.count]);
         break;
       case 'line':
-        show.innerHTML += ejikznayka.decoratedSeq[ejikznayka.count];
+        $('#show').append(ejikznayka.decoratedSeq[ejikznayka.count]);
         break;
       default:
         break;
     }
-    //show.innerHTML = ejikznayka.decoratedSeq[ejikznayka.count];
-    show.classList.add('new');
-    //show.classList.remove('old');
+    // show.innerHTML = ejikznayka.decoratedSeq[ejikznayka.count];
+    $('#show').addClass('new');
+    // show.classList.remove('old');
     if (ejikznayka.settings.random_location && ejikznayka.settings.column === 'single') {
       $('#show').css('position', 'absolute').css(ejikznayka.positions[ejikznayka.count]);
     }
 
     setTimeout(function () {
-      show.classList.remove('new');
+      $('#show').removeClass('new');
     }, ejikznayka.settings.interval * 500);
     setTimeout(function () {
-      //show.classList.add('old');
+      // show.classList.add('old');
     }, ejikznayka.settings.interval * 1000 - 100);
 
     if (++ejikznayka.count < ejikznayka.settings.count) {
@@ -179,7 +189,7 @@ var ejikznayka = {
     else {
       setTimeout(function () {
         if (!ejikznayka.settings.keep) {
-          show.innerHTML = '';
+          $('#show').html('');
         }
         showResult();
       }, ejikznayka.settings.interval * 1000);
@@ -193,29 +203,29 @@ var ejikznayka = {
   }
 
   function showResult() {
-    ejikznayka_display.style.display = 'flex';
-    start.style.display = 'block';
-    ejikznayka_close.style.display = 'block';
+    $('#ejikznayka_display').css('display', 'flex');
+    $('#start').css('display', 'block');
+    $('#ejikznayka_close').css('display', 'block');
     $('#ejikznayka_controls').children().show();
 
   }
 
   function checkAnswer() {
-    mark.style.display = 'block';
-    if (input_answer.value == ejikznayka.res) {
+    $('#mark').css('display', 'block');
+    if ($('#input_answer').val() == ejikznayka.res) {
       $('#your_answer').removeClass('incorrect').addClass('correct');
-      check_answer_message.querySelector('.incorrect').style.display = 'none';
-      check_answer_message.querySelector('.correct').style.display = 'block';
-      mark_placeholder.innerHTML = ejikznayka.settings.mark;
+      $('#check_answer_message').find('.incorrect').css('display', 'none');
+      $('#check_answer_message').find('.correct').css('display', 'block');
+      $('#mark_placeholder').html(ejikznayka.settings.mark);
       if (typeof $('.correct audio').get(0) !== 'undefined') {
         $('.correct audio').get(0).play();
       }
     }
     else {
       $('#your_answer').removeClass('correct').addClass('incorrect');
-      check_answer_message.querySelector('.correct').style.display = 'none';
-      check_answer_message.querySelector('.incorrect').style.display = 'block';
-      mark_placeholder.innerHTML = 0;
+      $('#check_answer_message').find('.correct').css('display', 'none');
+      $('#check_answer_message').find('.incorrect').css('display', 'block');
+      $('#mark_placeholder').html('0');
       if (typeof $('.incorrect audio').get(0) !== 'undefined') {
         $('.incorrect audio').get(0).play();
       }
@@ -225,9 +235,9 @@ var ejikznayka = {
   function hideControls() {
     $('#ejikznayka_controls').children().hide();
     // Restore all controls.
-    //$('#ejikznayka_controls').children().css('visibility', 'visible');
-    //$('#ejikznayka_display').children().css('display', 'none');
+    // $('#ejikznayka_controls').children().css('visibility', 'visible');
+    // $('#ejikznayka_display').children().css('display', 'none');
     $('#your_answer').removeClass();
-    ejikznayka_close.style.display = 'none';
+    $('#ejikznayka_close').css('display', 'none');
   }
 })(jQuery, Drupal);

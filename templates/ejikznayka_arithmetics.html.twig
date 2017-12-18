@@ -43,7 +43,7 @@
         {% else %}
           {{ "Incorrect!"|t }}
         {% endif %}
-        {%  if incorrect_audio is defined %}
+        {%  if incorrect_audio %}
           <audio src="{{ incorrect_audio }}"></audio>
         {%  endif %}
       </div>
@@ -53,7 +53,7 @@
         {% else %}
           {{ "Correct!"|t }}
         {% endif %}
-        {% if correct_audio is defined %}
+        {% if correct_audio %}
           <audio src="{{ correct_audio }}"></audio>
         {% endif %}
       </div>

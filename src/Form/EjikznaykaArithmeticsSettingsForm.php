@@ -64,6 +64,13 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
       ),
     );
 
+    $form['sequence'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Display a sequence of numbers in the range'),
+      '#description' => $this->t('No arithmetic operations, just display the numbers. No opitons apply except range.'),
+      '#default_value' => $config->get('sequence'),
+    );
+
     $form['count'] = array(
       '#type' => 'number',
       '#title' => $this->t('Number of numbers'),
@@ -198,6 +205,9 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
         $form_state->setErrorByName('range', $this->t('Range "from" should be less than "to"'));
       }
     }
+    if ($form_state->getValue('sequence') && (empty($form_state->getValue(['range', 'max'])) || empty($form_state->getValue(['range', 'min'])))) {
+      $form_state->setErrorByName('range', $this->t('Range should be set if you want to display a sequence of numbers'));
+    }
   }
 
   /**
@@ -243,6 +253,7 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
       ->set('mark', $form_state->getValue('mark'))
       ->set('digits', $form_state->getValue('digits'))
       ->set('range', $form_state->getValue('range'))
+      ->set('sequence', $form_state->getValue('sequence'))
       ->set('column', $form_state->getValue('column'))
       ->set('font_size', $form_state->getValue('font_size'))
       ->save();
