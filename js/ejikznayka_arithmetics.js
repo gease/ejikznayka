@@ -42,16 +42,25 @@ var ejikznayka = {
       this.range = this.max - this.min;
     }
     // Generate sequence of numbers.
-    var i;
-    for (i = 0; i < this.settings.count; i++) {
-      if (this.settings.minus == false || (Math.random() > 0.5 || this.res <= this.min)) {
-        this.seq[i] = this.min + Math.floor(Math.random() * (this.range + 1));
+    if (this.settings.sequence) {
+      var j = 0;
+      for (var i = this.settings.range.min; i <= this.settings.range.max; i++) {
+        this.seq[j] = i;
+        this.decoratedSeq[j] = this.decorate(i, true);
+        j++;
       }
-      else {
-        this.seq[i] = -(this.min + Math.floor(Math.random() * (Math.min(this.max, this.res) - this.min + 1)));
+    }
+    else {
+      for (var i = 0; i < this.settings.count; i++) {
+        if (this.settings.minus == false || (Math.random() > 0.5 || this.res <= this.min)) {
+          this.seq[i] = this.min + Math.floor(Math.random() * (this.range + 1));
+        }
+        else {
+          this.seq[i] = -(this.min + Math.floor(Math.random() * (Math.min(this.max, this.res) - this.min + 1)));
+        }
+        this.res += this.seq[i];
+        this.decoratedSeq[i] = this.decorate(this.seq[i], i === 0);
       }
-      this.res += this.seq[i];
-      this.decoratedSeq[i] = this.decorate(this.seq[i], i === 0);
     }
 
     if (this.settings.random_location) {
@@ -79,7 +88,7 @@ var ejikznayka = {
       }
     }
   },
-
+  // if skip == true we don't add plus sign.
   decorate: function (i, skip) {
     'use strict';
     if (typeof skip === 'undefined') {
@@ -183,7 +192,7 @@ var ejikznayka = {
       // show.classList.add('old');
     }, ejikznayka.settings.interval * 1000 - 100);
 
-    if (++ejikznayka.count < ejikznayka.settings.count) {
+    if (++ejikznayka.count < ejikznayka.seq.length) {
       setTimeout(changeNumber, ejikznayka.settings.interval * 1000);
     }
     else {
