@@ -67,7 +67,7 @@ class EjikznaykaArithmeticsSettingsForm extends ConfigFormBase {
     $form['sequence'] = array(
       '#type' => 'checkbox',
       '#title' => $this->t('Display a sequence of numbers in the range'),
-      '#description' => $this->t('No arithmetic operations, just display the numbers. No opitons apply except range.'),
+      '#description' => $this->t('No arithmetic operations, just display the numbers. No options apply except range.'),
       '#default_value' => $config->get('sequence'),
     );
 
