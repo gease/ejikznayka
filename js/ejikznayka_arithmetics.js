@@ -42,6 +42,16 @@ var ejikznayka = {
       this.range = this.max - this.min;
     }
     // Generate sequence of numbers.
+    if (!this.settings.data) {
+      this.generate();
+    }
+    else {
+      this.seq = this.settings.data.sequence;
+      this.decorateAll();
+    }
+  },
+  generate: function () {
+    'use strict';
     if (this.settings.sequence) {
       var j = 0;
       for (var i = this.settings.range.min; i <= this.settings.range.max; i++) {
@@ -88,6 +98,7 @@ var ejikznayka = {
       }
     }
   },
+
   // if skip == true we don't add plus sign.
   decorate: function (i, skip) {
     'use strict';
@@ -106,8 +117,13 @@ var ejikznayka = {
         return '+' + i;
       }
     }
+  },
+  decorateAll: function () {
+    'use strict';
+    for (var i = 0; i < this.seq.length; i++) {
+      this.decoratedSeq[i] = this.decorate(this.seq[i], i === 0);
+    }
   }
-
 };
 
 (function ($, Drupal) {
