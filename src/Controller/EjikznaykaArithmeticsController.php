@@ -7,6 +7,9 @@ use Drupal\file\Entity\File;
 
 class EjikznaykaArithmeticsController extends ControllerBase {
 
+  /**
+   * Main page controller.
+   */
   public function content() {
     $config = \Drupal::config('ejikznayka.arithmetics')->get();
     $js_config = [

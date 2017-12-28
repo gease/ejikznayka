@@ -26,29 +26,33 @@ var ejikznayka = {
     if (!jQuery.isEmptyObject(settings)) {
       this.settings = jQuery.extend(true, {}, settings);
     }
-
+    if (!this.settings.digits && !this.settings.range && !this.settings.data) {
+      throw 'No data to initialize sequence';
+    }
     jQuery('#show, #your_answer_placeholder, #correct_answer_placeholder').css('font-size', this.settings.font_size + 'px');
     jQuery('#ejikznayka_display').css('font-size', (3 * this.settings.font_size / 4) + 'px');
-    // Setup value ranges.
-    if (this.settings.digits) {
-      this.min = 1;
-      this.max = Math.pow(10, this.settings.digits) - 1;
-      this.range = this.max - this.min;
-    }
-    else {
-      // We need to typecast string to int.
-      this.min = +this.settings.range.min;
-      this.max = +this.settings.range.max;
-      this.range = this.max - this.min;
-    }
-    // Generate sequence of numbers.
     if (!this.settings.data) {
+      if (this.settings.digits) {
+        // Setup value ranges.
+        this.min = 1;
+        this.max = Math.pow(10, this.settings.digits) - 1;
+        this.range = this.max - this.min;
+      }
+      else {
+        // We need to typecast string to int.
+        this.min = +this.settings.range.min;
+        this.max = +this.settings.range.max;
+        this.range = this.max - this.min;
+      }
+      // Generate sequence of numbers.
       this.generate();
     }
     else {
       this.seq = this.settings.data.sequence;
       this.decorateAll();
+      this.positions = this.settings.data.positions;
     }
+
   },
   generate: function () {
     'use strict';
