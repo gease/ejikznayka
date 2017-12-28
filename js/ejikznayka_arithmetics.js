@@ -49,6 +49,9 @@ var ejikznayka = {
     }
     else {
       this.seq = this.settings.data.sequence;
+      for (var i = 0; i < this.seq.length; i++) {
+        this.res += this.seq[i];
+      }
       this.decorateAll();
       this.positions = this.settings.data.positions;
     }
