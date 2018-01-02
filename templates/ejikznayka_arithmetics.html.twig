@@ -13,30 +13,30 @@
 #}
 
 {{ attach_library('ejikznayka_arithmetics/ejikznayka_arithmetics') }}
-<button id="ejikznayka_page">{{ 'Go to the exercise page'|t }}</button>
+<button class="ejikznayka_page">{{ 'Go to the exercise page'|t }}</button>
 <div class="overlay">
-  <div id="ejikznayka_close"></div>
-  <div id="ejikznayka_controls">
-    <input type="button" name="start" id="start" value="{{ 'Start'|t }}"/>
-    <input type="text" name="input_answer" id="input_answer" placeholder="{{ 'Your answer'|t }}"/>
-    <input type="button" name="check_answer" id="check_answer" value="{{ 'Check the answer'|t }}"/>
-    <input type="button" name="show_answer" id="show_answer" value="{{ 'Show answer'|t }}"/>
+  <div class="ejikznayka_close"></div>
+  <div class="ejikznayka_controls">
+    <input type="button" name="start" class="start" value="{{ 'Start'|t }}"/>
+    <input type="text" name="input_answer" class="input_answer" placeholder="{{ 'Your answer'|t }}"/>
+    <input type="button" name="check_answer" class="check_answer" value="{{ 'Check the answer'|t }}"/>
+    <input type="button" name="show_answer" class="show_answer" value="{{ 'Show answer'|t }}"/>
   </div>
-  <div id="ejikznayka_display">
-    <div id="mark">
+  <div class="ejikznayka_display">
+    <div class="mark">
       {{ "Mark for the response"|t }}
-      <span id="mark_placeholder"></span>
+      <span class="mark_placeholder"></span>
     </div>
-    <div id="show"></div>
-    <div id="your_answer">
+    <div class="show"></div>
+    <div class="your_answer">
       {{ "Your answer"|t }}:
-      <div id="your_answer_placeholder"></div>
+      <div class="your_answer_placeholder"></div>
     </div>
-    <div id="correct_answer">
+    <div class="correct_answer">
       {{ "Correct answer"|t }}:
-      <div id="correct_answer_placeholder"></div>
+      <div class="correct_answer_placeholder"></div>
     </div>
-    <div id="check_answer_message">
+    <div class="check_answer_message">
       <div class="incorrect">
         {% if incorrect_emoticon %}
           <img src="{{ incorrect_emoticon }}"/>
@@ -59,6 +59,6 @@
       </div>
     </div>
   </div>
-  <div id="ejikznayka_empty"></div>
+  <div class="ejikznayka_empty"></div>
 
 </div>

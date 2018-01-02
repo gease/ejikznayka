@@ -29,8 +29,8 @@ var ejikznayka = {
     if (!this.settings.digits && !this.settings.range && !this.settings.data) {
       throw 'No data to initialize sequence';
     }
-    jQuery('#show, #your_answer_placeholder, #correct_answer_placeholder').css('font-size', this.settings.font_size + 'px');
-    jQuery('#ejikznayka_display').css('font-size', (3 * this.settings.font_size / 4) + 'px');
+    jQuery('.show, .your_answer_placeholder, .correct_answer_placeholder').css('font-size', this.settings.font_size + 'px');
+    jQuery('.ejikznayka_display').css('font-size', (3 * this.settings.font_size / 4) + 'px');
     if (!this.settings.data) {
       if (this.settings.digits) {
         // Setup value ranges.
@@ -139,23 +139,23 @@ var ejikznayka = {
     ejikznayka.setup(drupalSettings.ejikznayka.arithmetics);
 
     // Turning page on and off.
-    $('#ejikznayka_page').click(function () {
+    $('.ejikznayka_page').click(function () {
       $('.overlay').css('display', 'flex');
       ejikznayka.reset();
     });
 
-    $('#ejikznayka_close').click(function () {
+    $('.ejikznayka_close').click(function () {
       $('.overlay').css('display', 'none');
     });
 
     // Controls for the actions.
-    $('#start').click(function () {
+    $('.start').click(function () {
       ejikznayka.reset();
-      $('#correct_answer_placeholder').html('');
+      $('.correct_answer_placeholder').html('');
       // correct_answer.style.display = 'none';
-      $('#input_answer').val('');
-      $('#ejikznayka_display').children().hide();
-      $('#show').css('display','block');
+      $('.input_answer').val('');
+      $('.ejikznayka_display').children().hide();
+      $('.show').css('display', 'block');
       // if (ejikznayka.settings.column == 'single') {
       hideControls();
       changeNumber();
@@ -166,50 +166,50 @@ var ejikznayka = {
       }*/
     });
 
-    $('#show_answer').click(function () {
-      $('#correct_answer_placeholder').html(ejikznayka.res);
-      $('#correct_answer').css('display', 'block');
-      $('#ejikznayka_controls').children(':not(#start)').hide();
-      $('#show').html('');
+    $('.show_answer').click(function () {
+      $('.correct_answer_placeholder').html(ejikznayka.res);
+      $('.correct_answer').css('display', 'block');
+      $('.ejikznayka_controls').children(':not(.start)').hide();
+      $('.show').html('');
       checkAnswer();
     });
 
-    $('#check_answer').click( function () {
-      $('#check_answer_message').css('display', 'block');
-      $('#correct_answer').css('display', 'none');
-      $('#show').html('');
+    $('.check_answer').click(function () {
+      $('.check_answer_message').css('display', 'block');
+      $('.correct_answer').css('display', 'none');
+      $('.show').html('');
       checkAnswer();
     });
 
-    $('#input_answer').blur(function () {
-      $('#your_answer_placeholder').html(this.value);
-      $('#your_answer').css('display', 'block');
+    $('.input_answer').blur(function () {
+      $('.your_answer_placeholder').html(this.value);
+      $('.your_answer').css('display', 'block');
     });
   };
 
   function changeNumber() {
     switch (ejikznayka.settings.column) {
       case 'single':
-        $('#show').html(ejikznayka.decoratedSeq[ejikznayka.count]);
+        $('.show').html(ejikznayka.decoratedSeq[ejikznayka.count]);
         break;
       case 'column':
-        $('#show').append('<br>' + ejikznayka.decoratedSeq[ejikznayka.count]);
+        $('.show').append('<br>' + ejikznayka.decoratedSeq[ejikznayka.count]);
         break;
       case 'line':
-        $('#show').append(ejikznayka.decoratedSeq[ejikznayka.count]);
+        $('.show').append(ejikznayka.decoratedSeq[ejikznayka.count]);
         break;
       default:
         break;
     }
     // show.innerHTML = ejikznayka.decoratedSeq[ejikznayka.count];
-    $('#show').addClass('new');
+    $('.show').addClass('new');
     // show.classList.remove('old');
     if (ejikznayka.settings.random_location && ejikznayka.settings.column === 'single') {
-      $('#show').css('position', 'absolute').css(ejikznayka.positions[ejikznayka.count]);
+      $('.show').css('position', 'absolute').css(ejikznayka.positions[ejikznayka.count]);
     }
 
     setTimeout(function () {
-      $('#show').removeClass('new');
+      $('.show').removeClass('new');
     }, ejikznayka.settings.interval * 500);
     setTimeout(function () {
       // show.classList.add('old');
@@ -221,7 +221,7 @@ var ejikznayka = {
     else {
       setTimeout(function () {
         if (!ejikznayka.settings.keep) {
-          $('#show').html('');
+          $('.show').html('');
         }
         showResult();
       }, ejikznayka.settings.interval * 1000);
@@ -230,15 +230,15 @@ var ejikznayka = {
 
   function showColumn() {
     for (var i = 0; i < ejikznayka.settings.count; i++) {
-      $('#show').append(ejikznayka.decoratedSeq[i]).append('<br>');
+      $('.show').append(ejikznayka.decoratedSeq[i]).append('<br>');
     }
   }
 
   function showResult() {
-    $('#ejikznayka_display').css('display', 'flex');
-    $('#start').css('display', 'block');
-    $('#ejikznayka_close').css('display', 'block');
-    $('#ejikznayka_controls').children().show();
+    $('.ejikznayka_display').css('display', 'flex');
+    $('.start').css('display', 'block');
+    $('.ejikznayka_close').css('display', 'block');
+    $('.ejikznayka_controls').children().show();
 
   }
 

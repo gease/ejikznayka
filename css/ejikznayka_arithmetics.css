@@ -12,7 +12,7 @@
   left: 0;
   display: none;
 }
-#ejikznayka_close {
+.ejikznayka_close {
   position: absolute;
   cursor: pointer;
   top: 5%;
@@ -21,20 +21,20 @@
   height: 16px;
   background-image: url('../../../../core/misc/icons/000000/ex.svg');
 }
-#ejikznayka_controls {
+.ejikznayka_controls {
   flex-basis: 300px;
 }
 
-#ejikznayka_controls input {
+.ejikznayka_controls input {
   display: block;
   margin: 1em;
   visibility: inherit;
 }
 
-#ejikznayka_empty {
+.ejikznayka_empty {
   flex-basis: 300px;
 }
-#ejikznayka_display {
+.ejikznayka_display {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -42,10 +42,10 @@
   align-items: center;
   font-size: 30px;
 }
-#ejikznayka_display > div {
+.ejikznayka_display > div {
   display: none;
 }
-#check, #check_answer_message {
+.check, .check_answer_message {
   display: none;
 }
 input[type='number'] {
@@ -57,26 +57,26 @@ input[type='number'] {
 .correct {
   color: lightgreen;
 }
-#show {
+.show {
   color: black;
   font-size: 40px;
   transition: color  0.5s, opacity 0.1s;
   text-align: right;
 }
-#show.new {
+.show.new {
   color: red;
 }
-#show.old {
+.show.old {
   opacity: 0;
 }
-#your_answer_placeholder, #correct_answer_placeholder {
+.your_answer_placeholder, .correct_answer_placeholder {
   text-align: center;
   font-size: 40px;
 }
-#correct_answer {
+.correct_answer {
   color: green;
 }
-#mark {
+.mark {
   position: absolute;
   top: 5%;
 }
