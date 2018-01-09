@@ -174,4 +174,56 @@
     column: 'single',
     font_size: 40
   };
+  $.ejikznayka = {
+    generate: function (options) {
+      const defaults = {
+        min: 1,
+        max: 9,
+        count: 3,
+        minus: true
+      };
+      options = $.extend({}, defaults, options || {});
+      let sequence = [];
+      let res = 0;
+      let range = options.max - options.min;
+      for (let i = 0; i < options.count; i++) {
+        if (options.minus === false || (Math.random() > 0.5 || res <= options.min)) {
+          sequence[i] = options.min + Math.floor(Math.random() * (range + 1));
+        }
+        else {
+          sequence[i] = -(options.min + Math.floor(Math.random() * (Math.min(options.max, res) - options.min + 1)));
+        }
+        res += sequence[i];
+      }
+      return sequence;
+    },
+    generatePositions: function (count) {
+      let position = {};
+      let top;
+      let left;
+      let positions = [];
+      for (let i = 0; i < count; i++) {
+        top = Math.floor(Math.random() * 50);
+        left = Math.floor(Math.random() * 50);
+        if (Math.random() > 0.5) {
+          position.bottom = '';
+          position.top = top + '%';
+        }
+        else {
+          position.top = '';
+          position.bottom = top + '%';
+        }
+        if (Math.random() > 0.5) {
+          position.right = '';
+          position.left = left + '%';
+        }
+        else {
+          position.left = '';
+          position.right = left + '%';
+        }
+        positions[i] = Object.assign({}, position);
+      }
+      return positions;
+    }
+  };
 }(jQuery));
