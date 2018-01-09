@@ -1,7 +1,8 @@
 ejikznayka_arithmetics:
   version: 1.x
   js:
-    js/ejikznayka_arithmetics.js: {}
+    js/ejikznayka_arithmetics_new.js: {}
+    js/ejikznayka_play_formatter.js: {}
   css:
     component:
       css/ejikznayka_arithmetics.css: {}

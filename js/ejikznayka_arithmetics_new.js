@@ -45,7 +45,7 @@
       result += this.sequence[i];
     }
     this.result = result;
-    this.decoratedSequence = decorateAll(this.sequence);
+    const decoratedSequence = this.decoratedSequence = decorateAll(this.sequence);
     // Finish setup.
     // Region variables.
     const $block = $(this).next('.overlay');
@@ -71,7 +71,7 @@
         $display.children('.your_answer').removeClass('incorrect').addClass('correct');
         $check_answer_message.children('.incorrect').css('display', 'none');
         $check_answer_message.children('.correct').css('display', 'block');
-        $display.children('mark').children('.mark_placeholder').html(options.mark.good);
+        $display.children('.mark').children('.mark_placeholder').html(options.mark_good);
         if (typeof $correct_audio.get(0) !== 'undefined') {
           $correct_audio.get(0).play();
         }
@@ -80,7 +80,7 @@
         $display.children('.your_answer').removeClass('correct').addClass('incorrect');
         $check_answer_message.children('.correct').css('display', 'none');
         $check_answer_message.children('.incorrect').css('display', 'block');
-        $display.children('mark').children('.mark_placeholder').html(options.mark.bad);
+        $display.children('.mark').children('.mark_placeholder').html(options.mark_bad);
         if (typeof $incorrect_audio.get(0) !== 'undefined') {
           $incorrect_audio.get(0).play();
         }
@@ -89,13 +89,13 @@
     const changeNumber = function () {
       switch (options.column) {
         case 'single':
-          $show.html(this.decoratedSequence[state.current]);
+          $show.html(decoratedSequence[state.current]);
           break;
         case 'column':
-          $show.append('<br>' + this.decoratedSequence[state.current]);
+          $show.append('<br>' + decoratedSequence[state.current]);
           break;
         case 'line':
-          $show.append(this.decoratedSequence[state.current]);
+          $show.append(decoratedSequence[state.current]);
           break;
         default:
           break;
@@ -107,7 +107,7 @@
       setTimeout(function () {
         $show.removeClass('new');
       }, options.interval * 500);
-      if (++state.current < this.sequence.length) {
+      if (++state.current < sequence.length) {
         setTimeout(changeNumber, options.interval * 1000);
       }
       else {
@@ -124,8 +124,8 @@
       // Restore all controls.
       // $('#ejikznayka_controls').children().css('visibility', 'visible');
       // $('#ejikznayka_display').children().css('display', 'none');
-      $display.children('.your_answer').removeClass();
-      $('#ejikznayka_close').css('display', 'none');
+      $display.children('.your_answer').removeClass('correct incorrect');
+      $block.children('.ejikznayka_close').css('display', 'none');
     };
     const attachHandlers = function () {
       $(this).click(function () {
@@ -157,12 +157,12 @@
         checkAnswer();
       });
       $controls.children('.input_answer').blur(function () {
-        let $your_answer = $display.children('.your_answer');
+        const $your_answer = $display.children('.your_answer');
         $your_answer.children('.your_answer_placeholder').html(this.value);
         $your_answer.css('display', 'block');
       });
     };
-    attachHandlers();
+    attachHandlers.call(this);
   };
   $.fn.ejikznayka.defaults = {
     interval: 1,
