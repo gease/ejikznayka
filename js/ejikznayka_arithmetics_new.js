@@ -136,6 +136,7 @@
       });
       $controls.children('.start').click(function () {
         $display.children('.correct_answer').children('.correct_answer_placeholder').html('');
+        state.current = 0;
         // correct_answer.style.display = 'none';
         $controls.children('.input_answer').val('');
         $display.children().hide();
